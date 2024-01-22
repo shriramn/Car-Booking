@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="bg" style="background-color: #f8f8f8;">
+    <nz-spin  [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working">
+    <div class="parent">
+        <div class="child">
+            <div nz-row class="imgDiv">
+                <div nz-col nzSpan="24">
+                    <h1 style="margin-left: 100px;">Log In</h1>
+                </div>
+            </div>
+            <form nz-form [formGroup]="loginForm">
+        
+                <nz-form-item>
+                    <nz-form-control  nzErrorTip="Email is required!">
+                    <nz-input-group nzPrefixIcon="user">
+                        <input type="text" nz-input placeholder="Enter Email" formControlName="email"/>
+                    </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-control  nzErrorTip="Password is required!">
+                    <nz-input-group nzPrefixIcon="lock">
+                        <input type="password" nz-input placeholder="Enter Password" formControlName="password"/>
+                    </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+
+        
+    
+    
+                <button nz-button class="button login-form-button login-form-margin" (click)="login()" [disabled]="loginForm.invalid" [nzType]="'primary'" >Login</button> Or
+                <a routerLink="/register"> Register Now!</a>
+        
+        
+            </form>
+      
+        
+        </div>
+      
+        </div>
+    </nz-spin>
+        
+    

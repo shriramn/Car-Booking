@@ -19,6 +19,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
+import { NgZorroImportsModule } from './NgZorroImportsModule';
 
 
 
@@ -43,6 +44,7 @@ registerLocaleData(en);
     NzLayoutModule,
     ReactiveFormsModule,
     NzMessageModule,
+    NgZorroImportsModule
 
 
   ],
