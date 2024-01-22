@@ -7,6 +7,7 @@ import com.rental.carrental.entity.User;
 import com.rental.carrental.enums.UserRole;
 import com.rental.carrental.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setName(signUpRequest.getName());
         user.setEmail(signUpRequest.getEmail());
-        user.setPassword((signUpRequest.getPassword()));
+        user.setPassword(new BCryptPasswordEncoder().encode(signUpRequest.getPassword()));
         user.setUserRole(UserRole.CUSTOMER);
         User createdUser = userRepository.save(user);
         UserDto userDto = new UserDto();
