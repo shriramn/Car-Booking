@@ -5,6 +5,7 @@ import com.rental.carrental.dto.AuthenticationResponse;
 import com.rental.carrental.dto.SignUpRequest;
 import com.rental.carrental.dto.UserDto;
 import com.rental.carrental.entity.User;
+import com.rental.carrental.enums.UserRole;
 import com.rental.carrental.repository.UserRepository;
 import com.rental.carrental.services.auth.AuthService;
 import com.rental.carrental.services.auth.jwt.UserService;
@@ -47,6 +48,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public AuthenticationResponse createAuthToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException, DisabledException, UsernameNotFoundException{
+
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
         }
@@ -57,6 +59,7 @@ public class AuthController {
         System.out.println("Here");
         final UserDetails userDetails = userService.userDetailService().loadUserByUsername(authenticationRequest.getEmail());
         Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
+        System.out.println(optionalUser);
         final String jwt = jwtUtil.generateToken(userDetails);
         AuthenticationResponse authenticationResponse= new AuthenticationResponse();
         if(optionalUser.isPresent()){

@@ -16,7 +16,6 @@ import java.util.function.Function;
 
 @Service
 public class JWTUtil {
-    private final String secret = "secret";
 
     public String extractUserName(String token) {
         return extractClaims(token, Claims::getSubject);
@@ -63,12 +62,12 @@ public class JWTUtil {
 
 
     public Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(getSigningKey()).parseClaimsJws(token).getBody();
     }
 
 
     public Key getSigningKey(){
-        byte[] keyBytes = Decoders.BASE64.decode("41123412312312213124");
+        byte[] keyBytes = Decoders.BASE64.decode("234720937420394720394829034823423423423529035829037590237490237409237490237402341123412312312213124");
         return Keys.hmacShaKeyFor(keyBytes);
 
     }
