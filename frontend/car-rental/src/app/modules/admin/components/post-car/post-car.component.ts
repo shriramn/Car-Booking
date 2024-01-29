@@ -16,9 +16,9 @@ isSpinning: boolean = false;
 selectedFile: File | null;
 imagePreview: string | ArrayBuffer | null;
 listOfOptions : Array<{label: string, value: string}> = [];
-listOfBrands = ["MARUTI", "TOYOTA"];
-listOfType =["Petrol", "EV"]
-listOfColor = ["Black", "White"]
+listOfBrands = ["MARUTI", "TOYOTA","TATA", "HYUNDAI"];
+listOfType =["Petrol","HYBRID", "EV"]
+listOfColor = ["Black","BLUE","RED", "White"]
 listOfTransmission = ["Manual", " Automatic"];
 
 
