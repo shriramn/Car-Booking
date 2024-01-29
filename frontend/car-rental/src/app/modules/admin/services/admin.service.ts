@@ -33,4 +33,9 @@ export class AdminService {
       'Bearer ' + StorageService.getToken()
     );
   }
+  
+  deleteCar(id: number): Observable<any> {
+    return this.http.delete(BASE_URL + "/api/admin/car/" + id, {
+      headers: this.createAuthorization() });
+  }
 }

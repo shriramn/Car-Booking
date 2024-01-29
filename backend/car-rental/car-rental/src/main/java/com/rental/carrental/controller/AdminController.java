@@ -29,4 +29,10 @@ public class AdminController {
         System.out.println(adminService.getAllCars());
         return ResponseEntity.ok(adminService.getAllCars());
     }
+
+    @DeleteMapping("/car/{id}")
+    public ResponseEntity<?> deleteCar(@PathVariable Long id){
+        adminService.deleteCar(id);
+        return ResponseEntity.ok(null);
+    }
 }
