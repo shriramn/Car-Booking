@@ -1,5 +1,5 @@
 <div style="margin-top: 50px">
-    <!-- <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working"> -->
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working">
     <div class="parent">
         <div class="child">
             <div nz-row class="imgDiv">
@@ -8,12 +8,12 @@
 
             <form nz-form [formGroup]="postCarForm">
                 <div nz-row>
-                    <div nz-col [nzMd]="24" [nzXs]="24">
+                    <div nz-col [nzMd]="24" [nzXs]="24" [nzSm]="24">
                         <div class="profile-badge">
                             <label for="upload_profile_image" class="upload_label" *ngIf="selectedFile">
-                                <img class="profile" src="imagePreview" alt="profile" />
+                                <img class="profile" [src]="imagePreview" alt="profile" />
                             </label>
-                            <input type="file" nz-button nzType="primary" id="upload_profile_image"
+                     <input type="file" nz-button nzType="primary" id="upload_profile_image"
                                 accept="image/x-png,image/gif,image/jpeg" (change)="onFilesSelectChange($event)" />
                             <button nz-button nzShape="circle"></button>
                         </div>
@@ -90,5 +90,5 @@
             </form>
         </div>
     </div>
+    </nz-spin>
 </div>
-<!-- </nz-spin> -->

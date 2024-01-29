@@ -15,8 +15,8 @@ public class CarDto {
     private String transmission;
     private String description;
     private Long price;
-    private Date date;
-    private byte[] image;
-    private MultipartFile returnedImage;
+    private Date year;
+    private MultipartFile img;
+    private byte[] returnedImage;
 
 }

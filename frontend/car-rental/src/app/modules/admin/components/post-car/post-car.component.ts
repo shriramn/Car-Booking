@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-car',
@@ -10,8 +13,8 @@ export class PostCarComponent implements OnInit {
 
 postCarForm!: FormGroup;
 isSpinning: boolean = false;
-selectedFile!: File;
-imagePreview: string | ArrayBuffer | null | undefined;
+selectedFile: File | null;
+imagePreview: string | ArrayBuffer | null;
 listOfOptions : Array<{label: string, value: string}> = [];
 listOfBrands = ["MARUTI", "TOYOTA"];
 listOfType =["Petrol", "EV"]
@@ -21,7 +24,11 @@ listOfTransmission = ["Manual", " Automatic"];
 
   
 
-constructor(private fb: FormBuilder) { }
+constructor(private fb: FormBuilder,
+   private adminService: AdminService, 
+  private message:NzMessageService,
+  private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.postCarForm = this.fb.group({  
@@ -38,6 +45,7 @@ constructor(private fb: FormBuilder) { }
 
   postCar(){
     console.log(this.postCarForm.value);
+    this.isSpinning = true;
     const formData:FormData = new FormData();
     formData.append("img", this.selectedFile);
     formData.append("brand", this.postCarForm.get('brand').value);
@@ -48,14 +56,23 @@ constructor(private fb: FormBuilder) { }
     formData.append("transmission", this.postCarForm.get('transmission').value);
     formData.append("description", this.postCarForm.get('description').value);
     formData.append("price", this.postCarForm.get('price').value);
-    formData.append("brand", this.postCarForm.get('brand').value);
-    console.log(formData);
+    console.log(formData.getAll);
+    this.adminService.postCar(formData).subscribe(data => {
+      this.isSpinning = false;
+      console.log(data);
+      this.message.success("Car Posted Successfully", {nzDuration: 5000});
+      this.router.navigateByUrl('/admin/dashboard')
+    }, error => {
+      this.message.error("Something went wrong", {nzDuration: 5000});
+      console.log(error);
+      this.router.navigateByUrl('/admin/dashboard')
+    });
     
   }
 
 
   onFilesSelectChange(event: any){
-    this.selectedFile = event?.target.files[0];
+    this.selectedFile = event.target.files[0];
     this.previewImage();
 
 
