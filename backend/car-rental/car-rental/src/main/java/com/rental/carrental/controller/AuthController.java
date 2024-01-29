@@ -5,10 +5,9 @@ import com.rental.carrental.dto.AuthenticationResponse;
 import com.rental.carrental.dto.SignUpRequest;
 import com.rental.carrental.dto.UserDto;
 import com.rental.carrental.entity.User;
-import com.rental.carrental.enums.UserRole;
 import com.rental.carrental.repository.UserRepository;
 import com.rental.carrental.services.auth.AuthService;
-import com.rental.carrental.services.auth.jwt.UserService;
+import com.rental.carrental.services.jwt.UserService;
 import com.rental.carrental.utils.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -53,7 +52,8 @@ public class AuthController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
         }
         catch (BadCredentialsException e){
-            throw new BadCredentialsException("Incorrect username or Password");
+            throw new BadCredentialsException("Incorrect username or Password" + e);
+
 
         }
         System.out.println("Here");

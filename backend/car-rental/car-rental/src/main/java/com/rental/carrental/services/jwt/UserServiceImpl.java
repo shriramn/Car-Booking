@@ -1,4 +1,4 @@
-package com.rental.carrental.services.auth.jwt;
+package com.rental.carrental.services.jwt;
 
 import com.rental.carrental.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
