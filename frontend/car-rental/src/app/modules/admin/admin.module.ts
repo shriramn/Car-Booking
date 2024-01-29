@@ -6,11 +6,13 @@ import { AminDashboardComponent } from './components/amin-dashboard/amin-dashboa
 import { PostCarComponent } from './components/post-car/post-car.component';
 import { NgZorroImportsModule } from 'src/app/NgZorroImportsModule';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { UpdateCarComponent } from './components/update-car/update-car.component';
 
 @NgModule({
   declarations: [
     AminDashboardComponent,
-    PostCarComponent
+    PostCarComponent,
+    UpdateCarComponent
   ],
   imports: [
     CommonModule,
